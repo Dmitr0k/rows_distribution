@@ -1,4 +1,5 @@
 import os
+import math
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -26,16 +27,22 @@ if __name__ == '__main__':
             print("\t{0}".format(p[ind]), end='')
         print("")
 
-        # calc and print F(x)
+        # calc F(x)
         for ind in range(0, i+1):
             Fx.append(float(format(sum(p[some] for some in range(0, ind)), ".2f")))
 
-        # calc and print Mx
+        # calc Mx
         Mx = float(format(sum(x[ind]*p[ind] for ind in range(0, i)), ".3f"))
 
-        # calc and print Dx
+        # calc Dx
         Mxx = sum((x[ind]**2)*p[ind] for ind in range(0, i))
         Dx = float(format(Mxx - Mx**2, ".3f"))
+
+        # calc M
+        M = x[p.index(max(p))]
+
+        # calc σ
+        sigma = math.sqrt(Dx)
 
         # print result
         result_text = "\nF(x):"
@@ -45,6 +52,8 @@ if __name__ == '__main__':
         result_text += "\n{0} for x > {1}".format(Fx[i], x[i - 1])
         result_text += "\n\nM(x) = {0}".format(Mx)
         result_text += "\n\nD(x) = {0}".format(Dx)
+        result_text += "\n\nM = {0}".format(M)
+        result_text += "\n\nσ = {0}".format(sigma)
         print(result_text)
 
         # first graph params
@@ -72,7 +81,7 @@ if __name__ == '__main__':
         oy = np.array(p)
 
         # graphics
-        fig1 = plt.figure()
+        fig1 = plt.figure(figsize=(8,6), dpi=100)
         fig1.canvas.set_window_title("Rows distribution by Dmitr0k")
         fig1.subplots_adjust(hspace=0.35)
         # ax1 = fig1.add_subplot(1, 1, 1)
