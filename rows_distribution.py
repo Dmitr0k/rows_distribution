@@ -17,7 +17,7 @@ if __name__ == '__main__':
         print("")
     os.system("clear")
 
-    if sum(p) == 1:
+    if round(sum(p)) == 1:
         # print table
         print("x[i]", end='')
         for ind in range(0, i):
